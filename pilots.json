@@ -1,0 +1,83 @@
+{
+  "CR90 corvette": [],
+  "Star Destroyer": [],
+  "Sentinel-class landing craft": [],
+  "Death Star": [],
+  "Millennium Falcon": [
+    "https://swapi.dev/api/people/13/",
+    "https://swapi.dev/api/people/14/",
+    "https://swapi.dev/api/people/25/",
+    "https://swapi.dev/api/people/31/"
+  ],
+  "Y-wing": [],
+  "X-wing": [
+    "https://swapi.dev/api/people/1/",
+    "https://swapi.dev/api/people/9/",
+    "https://swapi.dev/api/people/18/",
+    "https://swapi.dev/api/people/19/"
+  ],
+  "TIE Advanced x1": [
+    "https://swapi.dev/api/people/4/"
+  ],
+  "Executor": [],
+  "Rebel transport": [],
+  "Slave 1": [
+    "https://swapi.dev/api/people/22/"
+  ],
+  "Imperial shuttle": [
+    "https://swapi.dev/api/people/1/",
+    "https://swapi.dev/api/people/13/",
+    "https://swapi.dev/api/people/14/"
+  ],
+  "EF76 Nebulon-B escort frigate": [],
+  "Calamari Cruiser": [],
+  "A-wing": [
+    "https://swapi.dev/api/people/29/"
+  ],
+  "B-wing": [],
+  "Republic Cruiser": [],
+  "Droid control ship": [],
+  "Naboo fighter": [
+    "https://swapi.dev/api/people/11/",
+    "https://swapi.dev/api/people/35/",
+    "https://swapi.dev/api/people/60/"
+  ],
+  "Naboo Royal Starship": [
+    "https://swapi.dev/api/people/39/"
+  ],
+  "Scimitar": [
+    "https://swapi.dev/api/people/44/"
+  ],
+  "J-type diplomatic barge": [],
+  "AA-9 Coruscant freighter": [],
+  "Jedi starfighter": [
+    "https://swapi.dev/api/people/10/",
+    "https://swapi.dev/api/people/58/"
+  ],
+  "H-type Nubian yacht": [
+    "https://swapi.dev/api/people/35/"
+  ],
+  "Republic Assault ship": [],
+  "Solar Sailer": [],
+  "Trade Federation cruiser": [
+    "https://swapi.dev/api/people/10/",
+    "https://swapi.dev/api/people/11/"
+  ],
+  "Theta-class T-2c shuttle": [],
+  "Republic attack cruiser": [],
+  "Naboo star skiff": [
+    "https://swapi.dev/api/people/10/",
+    "https://swapi.dev/api/people/35/"
+  ],
+  "Jedi Interceptor": [
+    "https://swapi.dev/api/people/10/",
+    "https://swapi.dev/api/people/11/"
+  ],
+  "arc-170": [],
+  "Banking clan frigte": [],
+  "Belbullab-22 starfighter": [
+    "https://swapi.dev/api/people/10/",
+    "https://swapi.dev/api/people/79/"
+  ],
+  "V-wing": []
+}
