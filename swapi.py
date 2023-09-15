@@ -1,6 +1,14 @@
 import json
 import requests
 
+'''
+- Creating a function to pull the data on all the starships into a JSON file
+- 1st problem: When we pulled data originally and done a count on the starships
+    it did not return the full count of 36.
+    Resolved this by creating a sub function (fetch page) 
+    which returns the URL of the next page. 
+'''
+
 
 # Method 1 - Call upon the SWAPI --------------------------------------------------------------------------------
 # A method to call upon the swapi
@@ -19,30 +27,26 @@ def fetch_starships():
         response = fetch_page(next_page)
         print("retrieved results:", response)
         result.extend(response.get('results'))
-        next_page = response["next"]
-        print(f"calling next ships on page: {next_page}")
+        # The line above within the loop is gathering all data within the 'results' object
+        next_page = response["next"]  # This line of code is retrieving URL for the next page
+        print(f"calling next ships on page: {next_page}")  # This shows the URL
     return result
 
 
-# Method 2 - Call upon the SWAPI --------------------------------------------------------------------------------
-# To create a JSON FILE
+# Method 2 - To create a JSON FILE --------------------------------------------------------------------------------
 def write_into_json_file(file_name, data):
     with open(file_name, "w") as f:
         json.dump(data, f)
 
 
-# Method 3 - Grouping all the ships with their pilots
+# Method 3 - Grouping all the ships with their pilots --------------------------------------------------------------
 def pilots_for_starships(ships):
-    outcome = {}
+    outcome = []
     for ship in ships:
         print(f"Ship: {ship['name']}")
         pilots = ship['pilots']
-        if len(pilots) == 0:
-            print(f"\tship {ship['name']} has no pilots")
-        else:
-            for pilot in pilots:
-                print(f"\tpilot: {pilot}")
-        outcome[ship['name']] = ship['pilots']
+        for pilot in pilots:
+            outcome.append(pilot)
     return outcome
 
 
@@ -58,8 +62,7 @@ def fetch_names_for_pilots(pilot_urls):
         print("loading data from ", url)
         pilot_info = requests.get(url).json()
         pilot = {
-            "url": url,
-            "name": pilot_info['name']
+            url: pilot_info['name'] # Only want to return the key: URL value: name
         }
         pilots.append(pilot)
     return pilots
@@ -76,6 +79,18 @@ def pilot_names_for_starships(ships, ship_name=None):
     return outcome
 
 
+def all_pilot_names(ships, ship_name=None):
+    outcome = {}
+    for ship in ships:
+        if ship['name'] == ship_name or ship_name is None:
+            pilots = fetch_names_for_pilots(ship['pilots']) # Sub function
+            outcome.extend(pilots)
+            # iterates over the specified iterable and appends its elements to the end of the current list
+        else:
+            print(f"skipping ship {ship['name']}")
+    return outcome
+
+
 # Method 5 -------------------------------------------------------------------------------
 def pilot_name(pilot):
     return pilot['name']
@@ -85,7 +100,7 @@ def pilot_name(pilot):
 def fetch_pilot_names_for_starship(starship_name):
     ships = fetch_starships()
     pilots = pilot_names_for_starships(ships, starship_name)[starship_name]
-    return list(map(pilot_name, pilots)) # Using the list and map functions to follow TDD
+    return list(map(pilot_name, pilots))  # Using the list and map functions to follow TDD
 
 
 # Downloads all the ships and pilots - Groups them by ship and gives URL and name for each pilot

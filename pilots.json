@@ -1,1 +1,92 @@
-{"CR90 corvette": [], "Star Destroyer": [], "Sentinel-class landing craft": [], "Death Star": [], "Millennium Falcon": [{"url": "https://swapi.dev/api/people/13/", "name": "Chewbacca"}, {"url": "https://swapi.dev/api/people/14/", "name": "Han Solo"}, {"url": "https://swapi.dev/api/people/25/", "name": "Lando Calrissian"}, {"url": "https://swapi.dev/api/people/31/", "name": "Nien Nunb"}], "Y-wing": [], "X-wing": [{"url": "https://swapi.dev/api/people/1/", "name": "Luke Skywalker"}, {"url": "https://swapi.dev/api/people/9/", "name": "Biggs Darklighter"}, {"url": "https://swapi.dev/api/people/18/", "name": "Wedge Antilles"}, {"url": "https://swapi.dev/api/people/19/", "name": "Jek Tono Porkins"}], "TIE Advanced x1": [{"url": "https://swapi.dev/api/people/4/", "name": "Darth Vader"}], "Executor": [], "Rebel transport": [], "Slave 1": [{"url": "https://swapi.dev/api/people/22/", "name": "Boba Fett"}], "Imperial shuttle": [{"url": "https://swapi.dev/api/people/1/", "name": "Luke Skywalker"}, {"url": "https://swapi.dev/api/people/13/", "name": "Chewbacca"}, {"url": "https://swapi.dev/api/people/14/", "name": "Han Solo"}], "EF76 Nebulon-B escort frigate": [], "Calamari Cruiser": [], "A-wing": [{"url": "https://swapi.dev/api/people/29/", "name": "Arvel Crynyd"}], "B-wing": [], "Republic Cruiser": [], "Droid control ship": [], "Naboo fighter": [{"url": "https://swapi.dev/api/people/11/", "name": "Anakin Skywalker"}, {"url": "https://swapi.dev/api/people/35/", "name": "Padm\u00e9 Amidala"}, {"url": "https://swapi.dev/api/people/60/", "name": "Gregar Typho"}], "Naboo Royal Starship": [{"url": "https://swapi.dev/api/people/39/", "name": "Ric Oli\u00e9"}], "Scimitar": [{"url": "https://swapi.dev/api/people/44/", "name": "Darth Maul"}], "J-type diplomatic barge": [], "AA-9 Coruscant freighter": [], "Jedi starfighter": [{"url": "https://swapi.dev/api/people/10/", "name": "Obi-Wan Kenobi"}, {"url": "https://swapi.dev/api/people/58/", "name": "Plo Koon"}], "H-type Nubian yacht": [{"url": "https://swapi.dev/api/people/35/", "name": "Padm\u00e9 Amidala"}], "Republic Assault ship": [], "Solar Sailer": [], "Trade Federation cruiser": [{"url": "https://swapi.dev/api/people/10/", "name": "Obi-Wan Kenobi"}, {"url": "https://swapi.dev/api/people/11/", "name": "Anakin Skywalker"}], "Theta-class T-2c shuttle": [], "Republic attack cruiser": [], "Naboo star skiff": [{"url": "https://swapi.dev/api/people/10/", "name": "Obi-Wan Kenobi"}, {"url": "https://swapi.dev/api/people/35/", "name": "Padm\u00e9 Amidala"}], "Jedi Interceptor": [{"url": "https://swapi.dev/api/people/10/", "name": "Obi-Wan Kenobi"}, {"url": "https://swapi.dev/api/people/11/", "name": "Anakin Skywalker"}], "arc-170": [], "Banking clan frigte": [], "Belbullab-22 starfighter": [{"url": "https://swapi.dev/api/people/10/", "name": "Obi-Wan Kenobi"}, {"url": "https://swapi.dev/api/people/79/", "name": "Grievous"}], "V-wing": []}
+[
+  {
+    "https://swapi.dev/api/people/13/": "Chewbacca"
+  },
+  {
+    "https://swapi.dev/api/people/14/": "Han Solo"
+  },
+  {
+    "https://swapi.dev/api/people/25/": "Lando Calrissian"
+  },
+  {
+    "https://swapi.dev/api/people/31/": "Nien Nunb"
+  },
+  {
+    "https://swapi.dev/api/people/1/": "Luke Skywalker"
+  },
+  {
+    "https://swapi.dev/api/people/9/": "Biggs Darklighter"
+  },
+  {
+    "https://swapi.dev/api/people/18/": "Wedge Antilles"
+  },
+  {
+    "https://swapi.dev/api/people/19/": "Jek Tono Porkins"
+  },
+  {
+    "https://swapi.dev/api/people/4/": "Darth Vader"
+  },
+  {
+    "https://swapi.dev/api/people/22/": "Boba Fett"
+  },
+  {
+    "https://swapi.dev/api/people/1/": "Luke Skywalker"
+  },
+  {
+    "https://swapi.dev/api/people/13/": "Chewbacca"
+  },
+  {
+    "https://swapi.dev/api/people/14/": "Han Solo"
+  },
+  {
+    "https://swapi.dev/api/people/29/": "Arvel Crynyd"
+  },
+  {
+    "https://swapi.dev/api/people/11/": "Anakin Skywalker"
+  },
+  {
+    "https://swapi.dev/api/people/35/": "Padm\u00e9 Amidala"
+  },
+  {
+    "https://swapi.dev/api/people/60/": "Gregar Typho"
+  },
+  {
+    "https://swapi.dev/api/people/39/": "Ric Oli\u00e9"
+  },
+  {
+    "https://swapi.dev/api/people/44/": "Darth Maul"
+  },
+  {
+    "https://swapi.dev/api/people/10/": "Obi-Wan Kenobi"
+  },
+  {
+    "https://swapi.dev/api/people/58/": "Plo Koon"
+  },
+  {
+    "https://swapi.dev/api/people/35/": "Padm\u00e9 Amidala"
+  },
+  {
+    "https://swapi.dev/api/people/10/": "Obi-Wan Kenobi"
+  },
+  {
+    "https://swapi.dev/api/people/11/": "Anakin Skywalker"
+  },
+  {
+    "https://swapi.dev/api/people/10/": "Obi-Wan Kenobi"
+  },
+  {
+    "https://swapi.dev/api/people/35/": "Padm\u00e9 Amidala"
+  },
+  {
+    "https://swapi.dev/api/people/10/": "Obi-Wan Kenobi"
+  },
+  {
+    "https://swapi.dev/api/people/11/": "Anakin Skywalker"
+  },
+  {
+    "https://swapi.dev/api/people/10/": "Obi-Wan Kenobi"
+  },
+  {
+    "https://swapi.dev/api/people/79/": "Grievous"
+  }
+]
