@@ -39,7 +39,8 @@ def write_into_json_file(file_name, data):
         json.dump(data, f)
 
 
-# Method 3 - Grouping all the ships with their pilots --------------------------------------------------------------
+# Method 3 - Using the data from the API json file (function above) -------------------------------------
+# Grouping all the ships with their pilots --------------------------------------------------------------
 def pilots_for_starships(ships):
     outcome = []
     for ship in ships:
@@ -55,7 +56,9 @@ def fetch_pilots_for_starships():
     return pilots_for_starships(ships)
 
 
-# Method 4 - Same as above, but follows the url and loads the pilot details (because we need the name)
+# Method 4 - Same as above, but using the data from the above function 'pilots_for_starships()'
+# But, instead follows the url and loads the pilot name
+# We only need a list of dictionaries as: Key = URL and Values = Pilot name
 def fetch_names_for_pilots(pilot_urls):
     pilots = []
     for url in pilot_urls:
