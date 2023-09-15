@@ -2,9 +2,10 @@ import json
 from pymongo import MongoClient
 import pymongo
 
+
 client = pymongo.MongoClient()
 db = client['starwars']
-
+ 
 
 # Load JSON data
 def load_json_file(file_path):
@@ -21,6 +22,7 @@ def find_character_name(character_url: str, character_dict=None, pilots=None) ->
     return character_name
 
 
+
 # Find the character ID in MongoDB based on the character name
 def find_character_id(character_name: str) -> str:
     """
@@ -29,6 +31,9 @@ def find_character_id(character_name: str) -> str:
     character_id = db.characters.find({"name": character_name}, {"_id": 1})
     return character_id
 
+ 
+
+ 
 
 # Combine find_character_name and find_character_id to get the character's ID from its URL
 def find_id_from_url(character_url: str) -> str:
@@ -39,6 +44,8 @@ def find_id_from_url(character_url: str) -> str:
     id = find_character_id(name)
     return id
 
+
+ 
 
 # Replace character URLs in the starships collection with character IDs
 def replace_character_url(starships=None):
@@ -55,6 +62,7 @@ def replace_character_url(starships=None):
             pilot_ids.append(id)
         db.starships.update({starship}, {"$set": {"pilot": pilot_ids}})
 
+ 
 
 def character_name_to_id_mapping(characters_collection): # rename mapping function
     """
@@ -65,6 +73,7 @@ def character_name_to_id_mapping(characters_collection): # rename mapping functi
         character_name_to_id[character['name']] = character['_id']
     return character_name_to_id
 
+ 
 
 def update_pilots_with_ids(pilots_data, character_name_to_id):
     updated_pilots_data = {}
@@ -82,12 +91,14 @@ def update_pilots_with_ids(pilots_data, character_name_to_id):
         updated_pilots_data[starship_name] = updated_pilots
     return updated_pilots_data
 
+ 
 
 def update_starships_with_pilot_ids(starships_data, pilots_data):
     for starship in starships_data:
         starship['pilots'] = [pilot['id'] for pilot in pilots_data.get(starship['name'], [])]
     return starships_data
 
+ 
 
 def update_starships_in_mongodb(updated_starships_data, db_name='starwars', mongodb_url='mongodb://localhost:27017/'):
     client = MongoClient(mongodb_url)
@@ -97,26 +108,29 @@ def update_starships_in_mongodb(updated_starships_data, db_name='starwars', mong
         starships_collection.update_one({'name': starship['name']}, {'$set': {'pilots': starship['pilots']}})
     client.close()
 
+ 
 
 # Main function to run the entire process (Will be abstracted to another file)
 def main():
     pilots_data = load_json_file('pilots.json')
     starships_data = load_json_file('starships.json')
 
+
     client = MongoClient('mongodb://localhost:27017/')
     db_name = 'starwars'
     characters_collection = client[db_name]['characters']
-    
-    
+
+
     # running the functions
     character_name_to_id = character_name_to_id_mapping(characters_collection)
     updated_pilots_data = update_pilots_with_ids(pilots_data, character_name_to_id)
     updated_starships_data = update_starships_with_pilot_ids(starships_data, updated_pilots_data)
 
+ 
     update_starships_in_mongodb(updated_starships_data)
 
     client.close()
 
-
+ 
 if __name__ == "__main__":
     main()
