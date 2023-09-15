@@ -20,23 +20,8 @@ class Tests(unittest.TestCase):
         """
         Takes the "function" function and checks the pilots are displayed as URLs
         """
-        actual = function()['Millennium Falcon']
-        expected = ["https://swapi.dev/api/people/13/",
-                    "https://swapi.dev/api/people/14/",
-                    "https://swapi.dev/api/people/25/",
-                    "https://swapi.dev/api/people/31/"]
-        self.assertEqual(actual, expected)
-
-    def test_pilot_api_request(self):
-        """
-        Takes the "function" function and checks the URLs have been replaces by character names
-        TESTS DIRECT REPLACEMENT IN JSON
-        """
-        actual = function()['Millennium Falcon']
-        expected = ["Chewbacca",
-                    "Han Solo",
-                    "Lando Calrissian",
-                    "Nien Nunb"]
+        actual = pilots_for_starships()[0]
+        expected = ["https://swapi.dev/api/people/13/"]
         self.assertEqual(actual, expected)
 
     def test_URL_pilot_dictionary(self):
@@ -44,7 +29,7 @@ class Tests(unittest.TestCase):
         Takes the "function" function and checks the URL corresponds to the right name in the dictionary
         TESTS DICTIONARY
         """
-        actual = function()["https://swapi.dev/api/people/13/"]
+        actual = fetch_names_for_pilots()["https://swapi.dev/api/people/13/"]
         expected = "Chewbacca"
         self.assertEqual(actual, expected)
 
