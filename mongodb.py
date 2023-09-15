@@ -109,28 +109,3 @@ def update_starships_in_mongodb(updated_starships_data, db_name='starwars', mong
     client.close()
 
  
-
-# Main function to run the entire process (Will be abstracted to another file)
-def main():
-    pilots_data = load_json_file('pilots.json')
-    starships_data = load_json_file('starships.json')
-
-
-    client = MongoClient('mongodb://localhost:27017/')
-    db_name = 'starwars'
-    characters_collection = client[db_name]['characters']
-
-
-    # running the functions
-    character_name_to_id = character_name_to_id_mapping(characters_collection)
-    updated_pilots_data = update_pilots_with_ids(pilots_data, character_name_to_id)
-    updated_starships_data = update_starships_with_pilot_ids(starships_data, updated_pilots_data)
-
- 
-    update_starships_in_mongodb(updated_starships_data)
-
-    client.close()
-
- 
-if __name__ == "__main__":
-    main()
