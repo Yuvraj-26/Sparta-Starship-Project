@@ -30,7 +30,7 @@ This project adds a starship collection to the starwars character DB in Mongo. W
 ![Chewbacca in a spaceship](./images/chewwy.jpg)
 ### We used a Kanban board in Trello to manage this project. 
 
-# [Check it out here!]("https://trello.com/invite/b/aL4x7i8X/ATTI3dd123dc4baf0b155ce0f8377a6751d6F117B952/star-wars-sparta-project")
+# <a href= "https://trello.com/invite/b/aL4x7i8X/ATTI3dd123dc4baf0b155ce0f8377a6751d6F117B952/star-wars-sparta-project">Check it out here!
 
                                       🤖🌠🤖⭐
 
