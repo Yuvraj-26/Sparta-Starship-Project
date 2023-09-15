@@ -1,9 +1,10 @@
 import json
-import http 
+
 import requests
 
-with open("C:/Users/marti/Documents/SpartaDocs/Git2_0/Git_Sparta_BaseDirectory/Mongo/pilots.json") as jsonfile:
+with open("starships.json") as jsonfile:
     list_of_Ships = json.load(jsonfile)
+    print(list_of_Ships)
 list_of_sublist_of_pilot_links = list(list_of_Ships.values())
 
 #print(list_of_sublist_of_pilot_links)
