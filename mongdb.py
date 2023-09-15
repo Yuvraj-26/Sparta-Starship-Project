@@ -1,93 +1,136 @@
-'''
-- read the json file
-- takes pilot url out of starship_data
-- which character matches URL from dict
-- pull ID for character
-- swap URL for ID in starship_data
-- create collection in DB
-- loading data into DB
-
-
-- pull the relevant IDs from the DB
-- edit the starship data to change the urls for the IDs
-
-got characters (need to pull starship data, & API search to get 
-character name from URL in starship object)
-
-2 JSON files: 1 with all starship data & another dict with key/value 
-pairs for URL & character name
-
-'''
-
 import json
+from pymongo import MongoClient
 import pymongo
+
 
 client = pymongo.MongoClient()
 db = client['starwars']
+ 
+
+# Load JSON data
+def load_json_file(file_path):
+    with open(file_path, 'r') as file:
+        return json.load(file)
 
 
-def read_json_file(data_set):
+# Find the character name based on the character URL
+def find_character_name(character_url: str, character_dict=None, pilots=None) -> str:
     """
-    Function to read each json file so that we can use the data
+    Function to return the character name from the character URL, using the dictionary imported from JSON
     """
-    try: 
-        with open ('file.json', 'r' ) as json_file:
-            data_set = json.load(json_file)
-            return data_set
-    except: 
-        FileNotFoundError: print("File not found.")
-
-
-
-def create_starship_collection():
-    """
-    Function to create & populate a collection for the starships
-    """
-    db.create_collection("starships")
-    for starship in starship_data:
-        db.starships.insert_one(starship)
-
-
-def find_character_name(character_url: str) -> str:
-    """
-    Function to return the character name from the character url, using the dictionary imported from json
-    """
-    # character_name = character_dict.get(character_url)
-    character_name = character_dict[character_url]
+    character_name = pilots[character_url]
     return character_name
 
 
+
+# Find the character ID in MongoDB based on the character name
 def find_character_id(character_name: str) -> str:
     """
-    Function to return the character ID from the MongoDB using the character name
+    Function to return the character ID using the character name
     """
-    character_id = db.characters.find({"name": character_name}, {"_id":1})
+    character_id = db.characters.find({"name": character_name}, {"_id": 1})
     return character_id
 
+ 
 
+ 
+
+# Combine find_character_name and find_character_id to get the character's ID from its URL
 def find_id_from_url(character_url: str) -> str:
     """
-    Function combining the find_character_name & find_character_id functions, to return a character's ID from its URL
+    Function to use the find_character_name and find_character_id functions, to return a character's ID from its URL
     """
     name = find_character_name(character_url)
     id = find_character_id(name)
     return id
 
 
-def replace_character_url():
+ 
+
+# Replace character URLs in the starships collection with character IDs
+def replace_character_url(starships=None):
     """
     Function to loop through the objects in the starship collection, replacing the list associated with the 'Pilot' key
     with a new list of the character IDs, generated using our find_id_from_url function
     """
-    for starship in db.starships: 
-
+    for starship in db.starships:
         pilot_urls = []
         pilot_ids = []
-        for pilot_url in starships.pilot: 
+        for pilot_url in starships.pilot:
             pilot_urls.append(pilot_url)
-
             id = find_id_from_url(pilot_url)
             pilot_ids.append(id)
-        
-        db.starships.update({starship}, {"$set":{"pilot": pilot_ids}})
+        db.starships.update({starship}, {"$set": {"pilot": pilot_ids}})
 
+ 
+
+def character_name_to_id_mapping(characters_collection): # rename mapping function
+    """
+    Function to create a mapping of character names to character IDs
+    """
+    character_name_to_id = {}
+    for character in characters_collection.find():
+        character_name_to_id[character['name']] = character['_id']
+    return character_name_to_id
+
+ 
+
+def update_pilots_with_ids(pilots_data, character_name_to_id):
+    updated_pilots_data = {}
+    for starship_name, pilots in pilots_data.items():
+        updated_pilots = []
+        for pilot in pilots:
+            character_name = pilot['name']
+            character_id = character_name_to_id.get(character_name)
+            if character_id:
+                updated_pilot = {
+                    'id': character_id,
+                    'name': character_name
+                }
+                updated_pilots.append(updated_pilot)
+        updated_pilots_data[starship_name] = updated_pilots
+    return updated_pilots_data
+
+ 
+
+def update_starships_with_pilot_ids(starships_data, pilots_data):
+    for starship in starships_data:
+        starship['pilots'] = [pilot['id'] for pilot in pilots_data.get(starship['name'], [])]
+    return starships_data
+
+ 
+
+def update_starships_in_mongodb(updated_starships_data, db_name='starwars', mongodb_url='mongodb://localhost:27017/'):
+    client = MongoClient(mongodb_url)
+    db = client[db_name]
+    starships_collection = db['starships']
+    for starship in updated_starships_data:
+        starships_collection.update_one({'name': starship['name']}, {'$set': {'pilots': starship['pilots']}})
+    client.close()
+
+ 
+
+# Main function to run the entire process (Will be abstracted to another file)
+def main():
+    pilots_data = load_json_file('pilots.json')
+    starships_data = load_json_file('starships.json')
+
+
+    client = MongoClient('mongodb://localhost:27017/')
+    db_name = 'starwars'
+    characters_collection = client[db_name]['characters']
+
+
+    # running the functions
+    character_name_to_id = character_name_to_id_mapping(characters_collection)
+    updated_pilots_data = update_pilots_with_ids(pilots_data, character_name_to_id)
+    updated_starships_data = update_starships_with_pilot_ids(starships_data, updated_pilots_data)
+
+ 
+    update_starships_in_mongodb(updated_starships_data)
+
+    client.close()
+
+ 
+if __name__ == "__main__":
+    main()
