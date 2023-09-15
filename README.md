@@ -17,13 +17,13 @@ This project adds a starship collection to the starwars character DB in Mongo. W
 
 ### Within this project you will find the following sections: 
 
-- 🌠 [Main: everything you need to run the program]("main.py")
+- 🌠 <a href= "https://github.com/Yuvraj-26/Sparta-Starship-Project/blob/dev/main.py">Main: everything you need to run the program
 
-- 🌠 [API Section: requests & communications with the SWAPI (StarWars API)]("swapi.py")
+- 🌠 <a href= "https://github.com/Yuvraj-26/Sparta-Starship-Project/blob/dev/swapi.py">API Section: requests & communications with the SWAPI (StarWars API)
 
-- 🌠 [MongoDB Pipeline: functions to run the pipeline to MongoDB]("mongodb.py")
+- 🌠 <a href= "https://github.com/Yuvraj-26/Sparta-Starship-Project/blob/dev/mongodb.py">MongoDB Pipeline: functions to run the pipeline to MongoDB
 
-- 🌠 [Testing Suite: to check all is as it should be]("tests.py")
+- 🌠 <a href= "https://github.com/Yuvraj-26/Sparta-Starship-Project/blob/dev/tests.py">Testing Suite: to check all is as it should be
 
 
 
